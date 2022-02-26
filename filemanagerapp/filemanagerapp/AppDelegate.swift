@@ -1,11 +1,30 @@
-//
-//  AppDelegate.swift
-//  filemanagerapp
-//
-//  Created by Artem Sorokovikov on 23.02.2022.
-//
-
 import UIKit
+
+final class App {
+    enum Color {
+        static let background = UIColor.systemBackground
+        static let secondaryBackground = UIColor.secondarySystemBackground
+        static let success = UIColor.systemGreen
+        static let failure = UIColor.systemRed
+        static let primary = UIColor.systemBlue
+    }
+
+    enum Images {
+        static let heart = UIImage(systemName: "heart")
+        static let heartFill = UIImage(systemName: "heart.fill")
+        static let bookmark = UIImage(systemName: "bookmark")
+        static let bookmarkFill = UIImage(systemName: "bookmark.fill")
+        static let house = UIImage(systemName: "house")
+        static let houseFill = UIImage(systemName: "house.fill")
+        static let gearshape = UIImage(systemName: "gearshape")
+        static let gearshapeFill = UIImage(systemName: "gearshape.fill")
+        static let person = UIImage(systemName: "person.circle")
+        static let personFill = UIImage(systemName: "person.circle.fill")
+        static let newFolder = UIImage(systemName: "folder.badge.plus")
+        static let photo = UIImage(systemName: "photo")
+        static let folder = UIImage(systemName: "folder.fill")
+    }
+}
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

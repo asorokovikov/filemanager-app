@@ -8,15 +8,22 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
-
+    var coordinator: FolderFlowCoordinator!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = ViewController()
+
+        let navController = UINavigationController()
+        let factory = FolderModuleFactory()
+        coordinator = FolderFlowCoordinator(navigationController: navController, factory: factory)
+        factory.coordinator = coordinator
+
+        window?.rootViewController = coordinator.navigationController
         window?.makeKeyAndVisible()
+
+        coordinator.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
