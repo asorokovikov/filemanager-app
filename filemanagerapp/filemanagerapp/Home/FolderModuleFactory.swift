@@ -8,7 +8,7 @@ final class FolderModuleFactory {
         let vc = FolderViewController(output: presenter)
         presenter.viewInput = vc
         presenter.coordinator = coordinator
-        presenter.updateModel()
+        presenter.refresh()
         return vc
     }
 

@@ -9,6 +9,7 @@ protocol FolderViewOutput: AnyObject {
     func createFolder()
     func addPhoto(_ filename: String, _ image: UIImage)
     func delete(url: URL)
+    func refresh()
 }
 
 // MARK: - FolderViewController
@@ -60,6 +61,11 @@ final class FolderViewController: UITableViewController, FolderViewInput {
             UIBarButtonItem(image: App.Images.photo, style: .plain, target: self, action: #selector(didTapAddPhoto)),
             UIBarButtonItem(image: App.Images.newFolder, style: .plain, target: self, action: #selector(didTapCreateFolder)),
         ]
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.refresh()
     }
 
     // MARK: - Private methods

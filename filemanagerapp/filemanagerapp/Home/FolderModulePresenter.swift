@@ -15,6 +15,10 @@ struct FolderViewData {
     let entries: [EntryViewData]
 }
 
+extension EntryViewData {
+    var name: String { return url.lastPathComponent }
+}
+
 extension FolderViewData {
     static let `default` = FolderViewData(url: URL(fileURLWithPath: .empty), entries: [])
 
@@ -45,17 +49,26 @@ final class FolderModulePresenter {
     }
 }
 
+extension URL: Comparable {
+    public static func < (lhs: URL, rhs: URL) -> Bool {
+        lhs.lastPathComponent < rhs.lastPathComponent
+    }
+}
+
 extension FolderModulePresenter: FolderViewOutput {
 
-    func updateModel() {
+    func refresh() {
+        let isAscending = Settings.shared.sortingAscending
         let entries = Directory.GetFiles(model.url)
         let directories = entries
             .filter{ $0.isDirectory }
+            .sorted(by: { isAscending ? $0 < $1 : $0 > $1 })
             .map { directoryUrl in EntryViewData(url: directoryUrl, image: App.Images.folder, isDirectory: true) { [weak self] in
                 self?.coordinator?.showFolder(with: directoryUrl)
             } }
         let files = entries
             .filter{ !$0.isDirectory }
+            .sorted(by: { isAscending ? $0 < $1 : $0 > $1 })
             .map { fileUrl in EntryViewData(url: fileUrl, image: fileUrl.getFileImage(), isDirectory: false, onSelect: { [weak self] in
                 self?.showContent(of: fileUrl)
             }) }
@@ -71,14 +84,14 @@ extension FolderModulePresenter: FolderViewOutput {
             let folderName = controller.textFields?[0].text ?? "Новая папка"
             let newFolder = self.model.url.appendingPathComponent(folderName)
             Directory.CreateDirectory(newFolder)
-            self.updateModel()
+            self.refresh()
         }))
         coordinator?.navigationController.present(controller, animated: true, completion: nil)
     }
 
     func delete(url: URL) {
         Directory.Delete(url)
-        self.updateModel()
+        self.refresh()
     }
 
     func addPhoto(_ filename: String, _ image: UIImage) {
@@ -86,6 +99,6 @@ extension FolderModulePresenter: FolderViewOutput {
         let data = image.jpegData(compressionQuality: 1)
         guard let data = data else { return }
         Directory.CreateFile(fileUrl, with: data)
-        updateModel()
+        refresh()
     }
 }

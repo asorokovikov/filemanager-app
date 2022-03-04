@@ -20,6 +20,26 @@
 		46BE129027C976D60053042E /* Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE128F27C976D60053042E /* Directory.swift */; };
 		46BE129227C981E50053042E /* FolderModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE129127C981E50053042E /* FolderModuleFactory.swift */; };
 		46BE129627CA30250053042E /* ImagePopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE129527CA30250053042E /* ImagePopupController.swift */; };
+		46BE129927CF99320053042E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE129827CF99320053042E /* AppCoordinator.swift */; };
+		46BE129B27CF995C0053042E /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE129A27CF995C0053042E /* CoordinatorFactory.swift */; };
+		46BE129D27CF9E860053042E /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE129C27CF9E860053042E /* SettingsCoordinator.swift */; };
+		46BE129F27CF9F240053042E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE129E27CF9F240053042E /* SettingsViewController.swift */; };
+		46BE12A127CF9F460053042E /* SettingsTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12A027CF9F460053042E /* SettingsTableViewAdapter.swift */; };
+		46BE12A727CF9FC00053042E /* BadgeTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12A327CF9FC00053042E /* BadgeTableRow.swift */; };
+		46BE12A827CF9FC00053042E /* TableRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12A427CF9FC00053042E /* TableRows.swift */; };
+		46BE12A927CF9FC00053042E /* TableViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12A527CF9FC00053042E /* TableViewHandler.swift */; };
+		46BE12AA27CF9FC00053042E /* SwitchTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12A627CF9FC00053042E /* SwitchTableRow.swift */; };
+		46BE12AC27CF9FDA0053042E /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12AB27CF9FDA0053042E /* App.swift */; };
+		46BE12AE27CFA1260053042E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12AD27CFA1260053042E /* Settings.swift */; };
+		46BE12B127CFAB570053042E /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 46BE12B027CFAB570053042E /* KeychainAccess */; };
+		46BE12B327CFD57D0053042E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12B227CFD57D0053042E /* ImageCache.swift */; };
+		46BE12B727CFE2700053042E /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12B627CFE2700053042E /* AuthenticationViewController.swift */; };
+		46BE12BA27D0E57F0053042E /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12B927D0E57F0053042E /* AuthenticationView.swift */; };
+		46BE12BE27D2320B0053042E /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12BD27D2320B0053042E /* ErrorMessageView.swift */; };
+		46BE12C027D238420053042E /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12BF27D238420053042E /* UIView.swift */; };
+		46BE12C227D2443B0053042E /* AuthenticationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12C127D2443B0053042E /* AuthenticationPresenter.swift */; };
+		46BE12C427D244F60053042E /* AuthenticationViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12C327D244F60053042E /* AuthenticationViewData.swift */; };
+		46BE12C627D299690053042E /* PasswordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE12C527D299690053042E /* PasswordManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +57,25 @@
 		46BE128F27C976D60053042E /* Directory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Directory.swift; sourceTree = "<group>"; };
 		46BE129127C981E50053042E /* FolderModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderModuleFactory.swift; sourceTree = "<group>"; };
 		46BE129527CA30250053042E /* ImagePopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePopupController.swift; sourceTree = "<group>"; };
+		46BE129827CF99320053042E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		46BE129A27CF995C0053042E /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
+		46BE129C27CF9E860053042E /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		46BE129E27CF9F240053042E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		46BE12A027CF9F460053042E /* SettingsTableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewAdapter.swift; sourceTree = "<group>"; };
+		46BE12A327CF9FC00053042E /* BadgeTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeTableRow.swift; sourceTree = "<group>"; };
+		46BE12A427CF9FC00053042E /* TableRows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableRows.swift; sourceTree = "<group>"; };
+		46BE12A527CF9FC00053042E /* TableViewHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHandler.swift; sourceTree = "<group>"; };
+		46BE12A627CF9FC00053042E /* SwitchTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableRow.swift; sourceTree = "<group>"; };
+		46BE12AB27CF9FDA0053042E /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		46BE12AD27CFA1260053042E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		46BE12B227CFD57D0053042E /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		46BE12B627CFE2700053042E /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
+		46BE12B927D0E57F0053042E /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		46BE12BD27D2320B0053042E /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
+		46BE12BF27D238420053042E /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		46BE12C127D2443B0053042E /* AuthenticationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPresenter.swift; sourceTree = "<group>"; };
+		46BE12C327D244F60053042E /* AuthenticationViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewData.swift; sourceTree = "<group>"; };
+		46BE12C527D299690053042E /* PasswordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46BE12B127CFAB570053042E /* KeychainAccess in Frameworks */,
 				46BE128627C8162B0053042E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,17 +111,23 @@
 			isa = PBXGroup;
 			children = (
 				46BE129427CA2FF70053042E /* Common */,
-				46BE129327CA2FE30053042E /* FolderModule */,
+				46BE12B427CFE0D30053042E /* Components */,
+				46BE12B827D0DF9B0053042E /* Authentication */,
+				46BE129327CA2FE30053042E /* Home */,
+				46BE129727CF99140053042E /* Settings */,
+				46BE12AB27CF9FDA0053042E /* App.swift */,
 				46BE126C27C6B6820053042E /* AppDelegate.swift */,
+				46BE129827CF99320053042E /* AppCoordinator.swift */,
+				46BE129A27CF995C0053042E /* CoordinatorFactory.swift */,
 				46BE126E27C6B6820053042E /* SceneDelegate.swift */,
-				46BE127527C6B6840053042E /* Assets.xcassets */,
 				46BE127727C6B6840053042E /* LaunchScreen.storyboard */,
+				46BE127527C6B6840053042E /* Assets.xcassets */,
 				46BE127A27C6B6840053042E /* Info.plist */,
 			);
 			path = filemanagerapp;
 			sourceTree = "<group>";
 		};
-		46BE129327CA2FE30053042E /* FolderModule */ = {
+		46BE129327CA2FE30053042E /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				46BE128D27C9693B0053042E /* FolderViewCell.swift */,
@@ -90,7 +136,7 @@
 				46BE129127C981E50053042E /* FolderModuleFactory.swift */,
 				46BE128B27C968C30053042E /* FolderFlowCoordinator.swift */,
 			);
-			path = FolderModule;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		46BE129427CA2FF70053042E /* Common */ = {
@@ -98,9 +144,54 @@
 			children = (
 				46BE128727C816560053042E /* Common.swift */,
 				46BE128F27C976D60053042E /* Directory.swift */,
-				46BE129527CA30250053042E /* ImagePopupController.swift */,
+				46BE12B227CFD57D0053042E /* ImageCache.swift */,
+				46BE12BF27D238420053042E /* UIView.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		46BE129727CF99140053042E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				46BE129C27CF9E860053042E /* SettingsCoordinator.swift */,
+				46BE129E27CF9F240053042E /* SettingsViewController.swift */,
+				46BE12A027CF9F460053042E /* SettingsTableViewAdapter.swift */,
+				46BE12AD27CFA1260053042E /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		46BE12A227CF9FB70053042E /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				46BE12A327CF9FC00053042E /* BadgeTableRow.swift */,
+				46BE12A627CF9FC00053042E /* SwitchTableRow.swift */,
+				46BE12A427CF9FC00053042E /* TableRows.swift */,
+				46BE12A527CF9FC00053042E /* TableViewHandler.swift */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		46BE12B427CFE0D30053042E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				46BE12A227CF9FB70053042E /* Table */,
+				46BE129527CA30250053042E /* ImagePopupController.swift */,
+				46BE12BD27D2320B0053042E /* ErrorMessageView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		46BE12B827D0DF9B0053042E /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				46BE12B927D0E57F0053042E /* AuthenticationView.swift */,
+				46BE12C327D244F60053042E /* AuthenticationViewData.swift */,
+				46BE12C127D2443B0053042E /* AuthenticationPresenter.swift */,
+				46BE12B627CFE2700053042E /* AuthenticationViewController.swift */,
+				46BE12C527D299690053042E /* PasswordManager.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,6 +212,7 @@
 			name = filemanagerapp;
 			packageProductDependencies = (
 				46BE128527C8162B0053042E /* SnapKit */,
+				46BE12B027CFAB570053042E /* KeychainAccess */,
 			);
 			productName = filemanagerapp;
 			productReference = 46BE126927C6B6820053042E /* filemanagerapp.app */;
@@ -152,6 +244,7 @@
 			mainGroup = 46BE126027C6B6820053042E;
 			packageReferences = (
 				46BE128427C8162B0053042E /* XCRemoteSwiftPackageReference "SnapKit" */,
+				46BE12AF27CFAB570053042E /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 46BE126A27C6B6820053042E /* Products */;
 			projectDirPath = "";
@@ -179,16 +272,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46BE12C027D238420053042E /* UIView.swift in Sources */,
+				46BE12A827CF9FC00053042E /* TableRows.swift in Sources */,
+				46BE129927CF99320053042E /* AppCoordinator.swift in Sources */,
+				46BE12AA27CF9FC00053042E /* SwitchTableRow.swift in Sources */,
+				46BE12A727CF9FC00053042E /* BadgeTableRow.swift in Sources */,
 				46BE129627CA30250053042E /* ImagePopupController.swift in Sources */,
+				46BE129D27CF9E860053042E /* SettingsCoordinator.swift in Sources */,
 				46BE129027C976D60053042E /* Directory.swift in Sources */,
+				46BE12C227D2443B0053042E /* AuthenticationPresenter.swift in Sources */,
+				46BE129B27CF995C0053042E /* CoordinatorFactory.swift in Sources */,
 				46BE128C27C968C30053042E /* FolderFlowCoordinator.swift in Sources */,
 				46BE128327C8123D0053042E /* FolderViewController.swift in Sources */,
 				46BE128E27C9693B0053042E /* FolderViewCell.swift in Sources */,
+				46BE12B327CFD57D0053042E /* ImageCache.swift in Sources */,
 				46BE126D27C6B6820053042E /* AppDelegate.swift in Sources */,
+				46BE129F27CF9F240053042E /* SettingsViewController.swift in Sources */,
+				46BE12C427D244F60053042E /* AuthenticationViewData.swift in Sources */,
+				46BE12BA27D0E57F0053042E /* AuthenticationView.swift in Sources */,
+				46BE12AC27CF9FDA0053042E /* App.swift in Sources */,
 				46BE128A27C926C40053042E /* FolderModulePresenter.swift in Sources */,
 				46BE128827C816560053042E /* Common.swift in Sources */,
+				46BE12A927CF9FC00053042E /* TableViewHandler.swift in Sources */,
+				46BE12B727CFE2700053042E /* AuthenticationViewController.swift in Sources */,
 				46BE126F27C6B6820053042E /* SceneDelegate.swift in Sources */,
+				46BE12BE27D2320B0053042E /* ErrorMessageView.swift in Sources */,
+				46BE12AE27CFA1260053042E /* Settings.swift in Sources */,
+				46BE12A127CF9F460053042E /* SettingsTableViewAdapter.swift in Sources */,
 				46BE129227C981E50053042E /* FolderModuleFactory.swift in Sources */,
+				46BE12C627D299690053042E /* PasswordManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +457,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -372,7 +484,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -408,6 +520,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		46BE12AF27CFAB570053042E /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -415,6 +535,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 46BE128427C8162B0053042E /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		46BE12B027CFAB570053042E /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46BE12AF27CFAB570053042E /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
