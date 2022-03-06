@@ -1,39 +1,9 @@
 import Foundation
 import UIKit
 
-// MARK: - ViewModel
-
-struct EntryViewData {
-    let url: URL
-    let image: UIImage?
-    let isDirectory: Bool
-    let onSelect: Action
-}
-
-struct FolderViewData {
-    let url: URL
-    let entries: [EntryViewData]
-}
-
-extension EntryViewData {
-    var name: String { return url.lastPathComponent }
-}
-
-extension FolderViewData {
-    static let `default` = FolderViewData(url: URL(fileURLWithPath: .empty), entries: [])
-
-    var name: String { url.lastPathComponent }
-
-    func replaceEntries(_ entries: [EntryViewData]) -> FolderViewData {
-        return FolderViewData(url: self.url, entries: entries)
-    }
-}
-
-// MARK: - Presenter
-
-final class FolderModulePresenter {
+final class HomeModulePresenter {
     weak var viewInput: FolderViewInput?
-    weak var coordinator: FolderFlowCoordinator?
+    weak var coordinator: HomeFlowCoordinator?
 
     var model: FolderViewData = .default {
         didSet { viewInput?.model = model }
@@ -49,13 +19,7 @@ final class FolderModulePresenter {
     }
 }
 
-extension URL: Comparable {
-    public static func < (lhs: URL, rhs: URL) -> Bool {
-        lhs.lastPathComponent < rhs.lastPathComponent
-    }
-}
-
-extension FolderModulePresenter: FolderViewOutput {
+extension HomeModulePresenter: FolderViewOutput {
 
     func refresh() {
         let isAscending = Settings.shared.sortingAscending

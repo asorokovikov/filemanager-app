@@ -29,8 +29,6 @@ public extension UIView {
         button.setTitleColor(App.Color.inactiveText, for: .disabled)
         button.setBackgroundImage(App.Color.secondaryBackground.image, for: .disabled)
 
-        addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(target, action: selector, for: .touchUpInside)
         return button
     }
@@ -52,16 +50,14 @@ public extension UIView {
             clearButton.tintColor = App.Color.inactiveText
         }
 
-        addSubview(textField)
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(target, action: onTextChange, for: .editingChanged)
         return textField
     }
 
-    func makePasswordField(target: Any, onTextChange: Selector) -> UITextField {
+    func makePasswordField(placeholder: String = "Пароль" ,target: Any, onTextChange: Selector) -> UITextField {
         let textField = makeTextField(target: target, onTextChange: onTextChange)
         textField.setImage(App.Images.lockFill)
-        textField.placeholder = "Пароль"
+        textField.placeholder = placeholder
         textField.isSecureTextEntry = true
         return textField
     }
@@ -76,9 +72,35 @@ public extension UIView {
         label.textAlignment = .center
         label.textColor = App.Color.failure
         label.isHidden = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(label)
         return label
+    }
+
+    func makeLabel(text: String, font: UIFont) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textAlignment = .center
+        label.font = font
+        return label
+    }
+
+    func makeTitleLabel(text: String) -> UILabel {
+        let font = UIFont.preferredFont(forTextStyle: .title1).bold()
+        return makeLabel(text: text, font: font)
+    }
+
+    func makeSubtitleLabel(text: String) -> UILabel {
+        let font = UIFont.preferredFont(forTextStyle: .title3)
+        let label =  makeLabel(text: text, font: font)
+        label.textColor = App.Color.secondaryText
+        return label
+    }
+
+    func makeVerticalStack() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        stackView.distribution = .fill
+        return stackView
     }
 
     func fadeIn() {

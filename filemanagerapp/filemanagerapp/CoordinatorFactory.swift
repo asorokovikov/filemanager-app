@@ -9,11 +9,11 @@ protocol Coordinator: AnyObject {
 final class CoordinatorFactory {
 
     static func
-    makeHomeCoordinator() -> FolderFlowCoordinator {
+    makeHomeCoordinator() -> HomeFlowCoordinator {
         let controller = UINavigationController()
         controller.tabBarItem = UITabBarItem(title: "Домой", image: App.Images.house, selectedImage: App.Images.houseFill)
 
-        return FolderFlowCoordinator(navigationController: controller)
+        return HomeFlowCoordinator(navigationController: controller)
     }
 
     static func

@@ -1,7 +1,7 @@
 import Foundation
 
 final class AuthenticationPresenter {
-    weak var coordinator: FolderFlowCoordinator?
+    weak var coordinator: HomeFlowCoordinator?
     weak var viewInput: AuthenticationViewInput?
 
     private var model: AuthenticationViewData = .initial {
@@ -30,7 +30,6 @@ final class AuthenticationPresenter {
     dismiss() {
         coordinator?.navigationController.dismiss(animated: true, completion: nil)
     }
-
 }
 
 extension AuthenticationPresenter: AuthenticationViewOutput {

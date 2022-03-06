@@ -20,8 +20,29 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewIn
     // MARK: - Private
 
     private let output: AuthenticationViewOutput
-
+    private let contentView = UIView()
     private let errorView = ErrorMessageView()
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 16
+        return stackView
+    }()
+
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.keyboardDismissMode = .onDrag
+        return scrollView
+    }()
+
+    private let imageView: UIImageView = {
+        let imageView = UIImageView(image: App.Images.person)
+        imageView.tintColor = App.Color.inactiveText
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
 
     private lazy var button = view.makeButton(
         target: self,
@@ -55,7 +76,18 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewIn
 
     override func viewDidLoad() {
         view.backgroundColor = App.Color.background
+        textField.delegate = self
         setupLayout()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        registerKeyboardNotification()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unregisterKeyboardNotification()
     }
 
     // MARK: - Private methods
@@ -72,34 +104,70 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewIn
 
     private func
     setupLayout() {
-        let imageView = UIImageView(image: App.Images.personFill)
-        imageView.tintColor = App.Color.inactiveText
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(stackView)
+        stackView.addArrangedSubviews(imageView, errorView, textField, button)
 
-        view.addSubviews(imageView, errorView)
-
-        imageView.snp.makeConstraints { make in
-            make.centerY.equalTo(view.snp.centerY).dividedBy(2)
-            make.centerX.equalTo(view)
-            make.width.equalTo(view.snp.width).dividedBy(2)
-            make.height.equalTo(view.snp.width).dividedBy(2)
+        scrollView.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
+        contentView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView)
+            make.width.equalTo(scrollView)
+        }
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(contentView).offset(16)
+            make.leading.equalTo(contentView).offset(16)
+            make.trailing.equalTo(contentView).offset(-16)
+            make.bottom.equalTo(contentView).offset(-16)
+            make.height.equalTo(view).dividedBy(2).offset(16)
         }
         errorView.snp.makeConstraints { make in
-            make.leading.equalTo(view).offset(16)
-            make.trailing.equalTo(view).offset(-16)
-            make.centerY.equalTo(view)
             make.height.equalTo(50)
         }
         textField.snp.makeConstraints { make in
-            make.top.equalTo(errorView.snp.bottom).offset(16)
-            make.leading.equalTo(view).offset(16)
-            make.trailing.equalTo(view).offset(-16)
             make.height.equalTo(50)
         }
         button.snp.makeConstraints { make in
-            make.top.equalTo(textField.snp.bottom).offset(16)
-            make.leading.equalTo(view).offset(16)
-            make.trailing.equalTo(view).offset(-16)
             make.height.equalTo(50)
         }
+    }
+}
+
+// MARK: - Keyboard Handler
+
+extension AuthenticationViewController {
+    private func
+    registerKeyboardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    private func
+    unregisterKeyboardNotification() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc private func
+    onKeyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = keyboardSize.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        }
+    }
+
+    @objc private func
+    onKeyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset.bottom = .zero
+        scrollView.verticalScrollIndicatorInsets = .zero
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension AuthenticationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

@@ -9,6 +9,7 @@ final class SettingsCoordinator: Coordinator {
     init(navigationController: UINavigationController, factory: SettingsModuleFactory) {
         self.navigationController = navigationController
         self.factory = factory
+        factory.coordinator = self
     }
 
     func start() {
@@ -16,13 +17,35 @@ final class SettingsCoordinator: Coordinator {
     }
 
     func showSettingsModule() {
-        let vc = factory.makeSettingsModule()
-        navigationController.pushViewController(vc, animated: true)
+        let module = factory.makeSettingsModule()
+        navigationController.pushViewController(module, animated: true)
+    }
+
+    func showPasswordEditModule() {
+        let module = factory.makePasswordEditModule()
+        let navController = UINavigationController(rootViewController: module)
+        navController.isModalInPresentation = true
+        navController.modalPresentationStyle = .fullScreen
+        navigationController.present(navController, animated: true, completion: nil)
     }
 }
 
 final class SettingsModuleFactory {
+    weak var coordinator: SettingsCoordinator?
+
     func makeSettingsModule() -> UIViewController {
-        return SettingsViewController()
+        let module = SettingsViewController()
+        module.coordinator = coordinator
+        return module
+    }
+
+    func makePasswordEditModule() -> UIViewController {
+        let presenter = PasswordEditPresenter()
+        let module = PasswordEditViewController(output: presenter)
+        presenter.coordinator = coordinator
+        presenter.viewInput = module
+        presenter.render()
+        return module
+
     }
 }

@@ -2,7 +2,8 @@ import UIKit
 
 final class App {
     enum Color {
-        static let text = UIColor.black
+        static let text = UIColor.label
+        static let secondaryText = UIColor.secondaryLabel
         static let background = UIColor.systemBackground
         static let secondaryBackground = UIColor.secondarySystemBackground
         static let success = UIColor.systemGreen
@@ -24,11 +25,14 @@ final class App {
         static let gearshapeFill = UIImage(systemName: "gearshape.fill")
         static let person = UIImage(systemName: "person.circle")
         static let personFill = UIImage(systemName: "person.circle.fill")
+        static let key = UIImage(systemName: "key")
         static let newFolder = UIImage(systemName: "folder.badge.plus")
         static let photo = UIImage(systemName: "photo")
         static let folder = UIImage(systemName: "folder.fill")
         static let lockFill = UIImage(systemName: "lock.fill")
         static let xmark = UIImage(systemName: "xmark")
+        static let danger = UIImage(systemName: "exclamationmark.circle")!
+        static let checkmarkCircle = UIImage(systemName: "checkmark.circle")!
     }
 }
 

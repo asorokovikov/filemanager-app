@@ -14,6 +14,12 @@ struct ButtonViewData {
     static let initial = ButtonViewData(text: .empty, enabled: false)
 }
 
+enum AuthenticationData {
+    case creatingPassword
+    case confirmationPassword
+    case checkingPassword
+}
+
 struct AuthenticationViewData {
     let password: TextViewData
     let button: ButtonViewData

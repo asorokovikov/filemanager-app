@@ -13,7 +13,7 @@ final class AppCoordinator {
         coordinators.append(CoordinatorFactory.makeSettingsCoordinator())
 
         tabController.viewControllers = coordinators.map { $0.navigationController }
-        tabController.selectedIndex = 2
+        tabController.selectedIndex = 0
         window.rootViewController = tabController
         window.makeKeyAndVisible()
     }

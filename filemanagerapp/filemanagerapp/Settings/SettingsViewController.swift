@@ -1,6 +1,8 @@
 import UIKit
 
 final class SettingsViewController: UITableViewController {
+    weak var coordinator: SettingsCoordinator?
+
     private var handler: TableViewHandler!
 
     override init(style: UITableView.Style) {
@@ -59,7 +61,30 @@ final class SettingsViewController: UITableViewController {
     private func
     changePassword() {
         tableView.deselectRowIfSelected()
-        print(#function)
+        coordinator?.showPasswordEditModule()
+
+//        let controller = PasswordEditViewController()
+//        controller.isModalInPresentation = true
+//        controller.modalPresentationStyle = .fullScreen
+//        present(controller, animated: true, completion: nil)
+//        return
+//        print(#function)
+//        let alertController = UIAlertController(title: "Смена пароля", message: nil, preferredStyle: .alert)
+//        alertController.addTextField { $0.placeholder = "Введите пароль" }
+//        alertController.addTextField { $0.placeholder = "Повторите пароль" }
+//        alertController.addAction(UIAlertAction(title: "Подтвердить", style: .default, handler: { [weak self] _ in
+//            let manager = PasswordManager.shared
+//            let newPassword = alertController.textFields![0].text ?? .empty
+//            let confirmPassword = alertController.textFields![1].text ?? .empty
+//            if PasswordManager.IsValidPassword(newPassword) && newPassword == confirmPassword  {
+//                manager.password = newPassword
+//                print("Пароль изменен")
+//                return
+//            }
+//            print("Пароль не был изменен")
+//        }))
+//        alertController.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+//        present(alertController, animated: true, completion: nil)
     }
 
 //    private func

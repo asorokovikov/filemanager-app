@@ -1,10 +1,10 @@
 import UIKit
 
-final class FolderModuleFactory {
-    weak var coordinator: FolderFlowCoordinator?
+final class HomeModuleFactory {
+    weak var coordinator: HomeFlowCoordinator?
 
     func makeFolderModule(_ url: URL) -> FolderViewController {
-        let presenter = FolderModulePresenter(url: url)
+        let presenter = HomeModulePresenter(url: url)
         let vc = FolderViewController(output: presenter)
         presenter.viewInput = vc
         presenter.coordinator = coordinator

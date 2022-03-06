@@ -1,20 +1,18 @@
 import UIKit
 
-final class FolderFlowCoordinator: Coordinator {
-    private let factory: FolderModuleFactory
+final class HomeFlowCoordinator: Coordinator {
+    private let factory: HomeModuleFactory
 
     var onComplete: ((Coordinator) -> Void)?
     let navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.factory = FolderModuleFactory()
+        self.factory = HomeModuleFactory()
         factory.coordinator = self
     }
 
     func start() {
-        PasswordManager.shared.password = nil
-        
         let presenter = AuthenticationPresenter()
         let controller = AuthenticationViewController(output: presenter)
         presenter.viewInput = controller
