@@ -8,7 +8,6 @@ final class App {
         static let secondaryBackground = UIColor.secondarySystemBackground
         static let success = UIColor.systemGreen
         static let failure = UIColor.systemRed
-//        static let primary = UIColor(rgba: "00ABFF")
         static let primary = UIColor.systemBlue
         static let inactive = UIColor.secondarySystemBackground
         static let inactiveText = UIColor.placeholderText
@@ -31,8 +30,8 @@ final class App {
         static let folder = UIImage(systemName: "folder.fill")
         static let lockFill = UIImage(systemName: "lock.fill")
         static let xmark = UIImage(systemName: "xmark")
-        static let danger = UIImage(systemName: "exclamationmark.circle")!
-        static let checkmarkCircle = UIImage(systemName: "checkmark.circle")!
+        static let danger = UIImage(systemName: "exclamationmark.circle")
+        static let checkmarkCircle = UIImage(systemName: "checkmark.circle")
     }
 }
 

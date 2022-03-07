@@ -29,7 +29,7 @@ extension PasswordEditViewData {
         )
     }
 
-    func resetText() -> PasswordEditViewData {
+    func resetToInitialState() -> PasswordEditViewData {
         return PasswordEditViewData(
             password: TextViewData(text: .empty, onChange: password.onChange),
             confirm: TextViewData(text: .empty, onChange: confirm.onChange),

@@ -31,7 +31,7 @@ public class Toast {
     public static func
     error(_ text: String) -> Toast {
         let view = AppleToastView(
-            child: IconAppleToastView(image: App.Images.danger, imageTint: App.Color.failure, title: "Ошибка", subtitle: text),
+            child: IconAppleToastView(image: App.Images.danger, imageTint: App.Color.failure, title: text, subtitle: nil),
             lightBackgroundColor: UIColor.systemGroupedBackground
         )
         return self.init(view: view, config: ToastConfiguration())

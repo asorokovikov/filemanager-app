@@ -44,7 +44,6 @@ final class FolderViewCell: UITableViewCell {
 
     private func
     setupSubviews() {
-        
         contentView.addSubviews(titleLabel, contentImageView)
         contentImageView.snp.makeConstraints { make in
             make.leading.equalTo(contentView).offset(16)

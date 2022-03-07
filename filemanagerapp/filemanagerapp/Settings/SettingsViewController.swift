@@ -5,6 +5,8 @@ final class SettingsViewController: UITableViewController {
 
     private var handler: TableViewHandler!
 
+    // MARK: - Lifecycle
+
     override init(style: UITableView.Style) {
         super.init(style: style)
     }
@@ -32,7 +34,10 @@ final class SettingsViewController: UITableViewController {
         handler.model = makeViewModel()
     }
 
-    func makeViewModel() -> TableViewModel {
+    // MARK: - Private
+
+    private func
+    makeViewModel() -> TableViewModel {
         let sortingAscendingFooter = "Если опция включена, то контент отображается в алфавитном порядке"
 
         let sortingAscendingRow = SwitchTableRow(
@@ -62,43 +67,5 @@ final class SettingsViewController: UITableViewController {
     changePassword() {
         tableView.deselectRowIfSelected()
         coordinator?.showPasswordEditModule()
-
-//        let controller = PasswordEditViewController()
-//        controller.isModalInPresentation = true
-//        controller.modalPresentationStyle = .fullScreen
-//        present(controller, animated: true, completion: nil)
-//        return
-//        print(#function)
-//        let alertController = UIAlertController(title: "Смена пароля", message: nil, preferredStyle: .alert)
-//        alertController.addTextField { $0.placeholder = "Введите пароль" }
-//        alertController.addTextField { $0.placeholder = "Повторите пароль" }
-//        alertController.addAction(UIAlertAction(title: "Подтвердить", style: .default, handler: { [weak self] _ in
-//            let manager = PasswordManager.shared
-//            let newPassword = alertController.textFields![0].text ?? .empty
-//            let confirmPassword = alertController.textFields![1].text ?? .empty
-//            if PasswordManager.IsValidPassword(newPassword) && newPassword == confirmPassword  {
-//                manager.password = newPassword
-//                print("Пароль изменен")
-//                return
-//            }
-//            print("Пароль не был изменен")
-//        }))
-//        alertController.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
-//        present(alertController, animated: true, completion: nil)
     }
-
-//    private func
-//    clearAllData() {
-//        fatalError("Not implemented")
-//        tableView.deselectRowIfSelected(animated: true)
-//        let alert = UIAlertController(title: nil, message: "Вы точно хотите очистить кэш?", preferredStyle: .actionSheet)
-//        let clearAction = UIAlertAction(title: "Очистить", style: .destructive, handler: { _ in
-//            print("Clear cache")
-//        })
-//        alert.addAction(clearAction)
-//        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
-//        alert.preferredAction = clearAction
-//        present(alert, animated: true, completion: nil)
-//    }
 }
-

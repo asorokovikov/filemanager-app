@@ -9,17 +9,18 @@ final class PasswordEditPresenter: PasswordEditViewOutput {
     }
 
     func savePassword() {
-        if model.password.text.count < 4 || model.confirm.text.count < 4 {
+        if model.password.text.count < 4 {
             Toast.error("Пароль должен быть больше 4 символов").show(haptic: .error)
             return
         }
         if model.password.text != model.confirm.text {
             Toast.error("Пароли не совпадают").show(haptic: .error)
+            model = model.resetToInitialState()
             return
         }
 
-        let manager = PasswordManager.shared
-        manager.password = model.password.text
+        let manager = AuthenticationService.shared
+        manager.setPassword(model.password.text)
 
         let toast = Toast.success("Новый пароль сохранен", attachTo: coordinator?.navigationController.view)
         toast.show(haptic: .success, after: 0.5)
@@ -32,12 +33,7 @@ final class PasswordEditPresenter: PasswordEditViewOutput {
     }
 
     func render() {
-        model = makeModel()
-    }
-
-    private func
-    makeModel() -> PasswordEditViewData {
-        return PasswordEditViewData(
+        model = PasswordEditViewData(
             password: TextViewData(text: .empty, onChange: { [weak self] value in
                 guard let self = self else { return }
                 self.model = self.model.replacePassword(value)

@@ -220,3 +220,14 @@ extension URL: Comparable {
         lhs.lastPathComponent < rhs.lastPathComponent
     }
 }
+
+extension FileManager {
+    static var Documents: URL {
+        let manager = FileManager.default
+        let url = try? manager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        guard let url = url else {
+            fatalError("Failed to retrieve document directory")
+        }
+        return url
+    }
+}

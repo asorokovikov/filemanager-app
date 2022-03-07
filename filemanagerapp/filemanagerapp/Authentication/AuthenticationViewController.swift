@@ -21,7 +21,6 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewIn
 
     private let output: AuthenticationViewOutput
     private let contentView = UIView()
-    private let errorView = ErrorMessageView()
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -68,10 +67,22 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewIn
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
-        button.title = model.button.text
-        button.isEnabled = model.button.enabled
-        textField.text = model.password.text
-        errorView.errorText = model.error
+        switch model {
+        case .newPassword(let password, let confirmPassword, let isConfirmationPhase, let canSavePassword):
+            if isConfirmationPhase {
+                button.title = "Повторите пароль"
+                button.isEnabled = canSavePassword(confirmPassword.text)
+                textField.text = confirmPassword.text
+            } else {
+                button.title = "Создать пароль"
+                button.isEnabled = canSavePassword(password.text)
+                textField.text = password.text
+            }
+        case .authentication(let password, let canSavePassword):
+            button.title = "Введите пароль"
+            button.isEnabled = canSavePassword(password.text)
+            textField.text = password.text
+        }
     }
 
     override func viewDidLoad() {
@@ -90,11 +101,21 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewIn
         unregisterKeyboardNotification()
     }
 
-    // MARK: - Private methods
+    // MARK: - Private
 
     @objc private func
     didChangeText() {
-        model.password.onChange(textField.text ?? .empty)
+        let passwordText = textField.text ?? String.empty
+        switch model {
+        case .newPassword(let password, let confirmPassword, let isConfirmationPhase, _):
+            if isConfirmationPhase {
+                confirmPassword.onChange(passwordText)
+            } else {
+                password.onChange(passwordText)
+            }
+        case .authentication(let password, _):
+            password.onChange(passwordText)
+        }
     }
 
     @objc private func
@@ -107,7 +128,7 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewIn
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(stackView)
-        stackView.addArrangedSubviews(imageView, errorView, textField, button)
+        stackView.addArrangedSubviews(imageView, textField, button)
 
         scrollView.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
         contentView.snp.makeConstraints { make in
@@ -120,9 +141,6 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewIn
             make.trailing.equalTo(contentView).offset(-16)
             make.bottom.equalTo(contentView).offset(-16)
             make.height.equalTo(view).dividedBy(2).offset(16)
-        }
-        errorView.snp.makeConstraints { make in
-            make.height.equalTo(50)
         }
         textField.snp.makeConstraints { make in
             make.height.equalTo(50)

@@ -7,43 +7,66 @@ struct TextViewData {
     static let initial = TextViewData(text: .empty, onChange: { _ in () })
 }
 
-struct ButtonViewData {
-    let text: String
-    let enabled: Bool
+enum AuthenticationViewData {
+    case newPassword(
+        password: TextViewData,
+        confirmPassword: TextViewData,
+        isConfirmationPhase: Bool,
+        canSavePassword: (String) -> Bool
+    )
+    case authentication(
+        password: TextViewData,
+        canSavePassword: (String) -> Bool
+    )
 
-    static let initial = ButtonViewData(text: .empty, enabled: false)
-}
-
-enum AuthenticationData {
-    case creatingPassword
-    case confirmationPassword
-    case checkingPassword
-}
-
-struct AuthenticationViewData {
-    let password: TextViewData
-    let button: ButtonViewData
-    let error: String?
-
-    static let initial = AuthenticationViewData(password: .initial, button: .initial, error: nil)
+    static let initial = AuthenticationViewData.authentication(password: .initial, canSavePassword: {_ in return false})
 }
 
 extension AuthenticationViewData {
-    func replaceError(_ errorText: String?) -> AuthenticationViewData {
-        return AuthenticationViewData(
-            password: password,
-            button: button,
-            error: errorText)
-    }
-
     func replacePassword(_ value: String) -> AuthenticationViewData {
-        return AuthenticationViewData(
-            password: TextViewData(text: value, onChange: password.onChange),
-            button: ButtonViewData(text: button.text, enabled: PasswordManager.IsValidPassword(value)),
-            error: error)
+        switch self {
+        case .newPassword(let password, let confirmPassword, let isConfirmationPhase, let canSavePassword):
+            if isConfirmationPhase {
+                return .newPassword(
+                    password: password,
+                    confirmPassword: TextViewData(text: value, onChange: confirmPassword.onChange),
+                    isConfirmationPhase: isConfirmationPhase,
+                    canSavePassword: canSavePassword)
+            }
+            return .newPassword(
+                password: TextViewData(text: value, onChange: password.onChange),
+                confirmPassword: confirmPassword,
+                isConfirmationPhase: isConfirmationPhase,
+                canSavePassword: canSavePassword)
+        case .authentication(let password, let canSavePassword):
+            return .authentication(
+                password: TextViewData(text: value, onChange: password.onChange),
+                canSavePassword: canSavePassword
+            )
+        }
     }
 
-    func resetPassword() -> AuthenticationViewData {
-        return replacePassword(.empty)
+    func replaceConfirmationPhase(_ value: Bool) -> AuthenticationViewData {
+        if case .newPassword(let password, let confirmPassword, _, let canSavePassword) = self {
+            return .newPassword(password: password, confirmPassword: confirmPassword, isConfirmationPhase: value, canSavePassword: canSavePassword)
+        }
+        return self
+    }
+
+    func resetToInitialState() -> AuthenticationViewData {
+        switch self {
+        case .newPassword(let password, let confirmPassword, _, let canSavePassword):
+            return .newPassword(
+                password: TextViewData(text: .empty, onChange: password.onChange),
+                confirmPassword: TextViewData(text: .empty, onChange: confirmPassword.onChange),
+                isConfirmationPhase: false,
+                canSavePassword: canSavePassword
+            )
+        case .authentication(let password, let canSavePassword):
+            return .authentication(
+                password: TextViewData(text: .empty, onChange: password.onChange),
+                canSavePassword: canSavePassword
+            )
+        }
     }
 }

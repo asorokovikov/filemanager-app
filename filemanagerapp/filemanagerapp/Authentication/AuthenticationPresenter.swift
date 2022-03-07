@@ -9,16 +9,19 @@ final class AuthenticationPresenter {
     }
 
     func render() {
-        let manager = PasswordManager.shared
-        model = AuthenticationViewData(
-            password: TextViewData(text: .empty, onChange: { [weak self] value in
-                self?.onTextChanged(value)
-            }),
-            button: ButtonViewData(
-                text: manager.isPasswordCreated ?  "Введите пароль" : "Создать пароль",
-                enabled: false),
-            error: nil
-        )
+        if AuthenticationService.shared.isPasswordCreated {
+            model = AuthenticationViewData.authentication(
+                password: TextViewData(text: .empty, onChange: onTextChanged),
+                canSavePassword: AuthenticationService.IsValidPassword
+            )
+        } else {
+            model = AuthenticationViewData.newPassword(
+                password: TextViewData(text: .empty, onChange: onTextChanged),
+                confirmPassword: TextViewData(text: .empty, onChange: onTextChanged),
+                isConfirmationPhase: false,
+                canSavePassword: AuthenticationService.IsValidPassword
+            )
+        }
     }
 
     private func
@@ -34,22 +37,37 @@ final class AuthenticationPresenter {
 
 extension AuthenticationPresenter: AuthenticationViewOutput {
     func login() {
-        assert(PasswordManager.IsValidPassword(model.password.text), "Password must be 4 or more characters")
-
-        let manager = PasswordManager.shared
-        if manager.password == nil {
-            manager.password = model.password.text
-            dismiss()
-            return
+        switch model {
+        case .newPassword(let password, let confirmPassword, let isConfirmationPhase, _):
+            processNewPassword(password.text, confirmPassword.text, isConfirmationPhase)
+        case .authentication(let password, _):
+            processAuthentication(password.text)
         }
-        if manager.password == model.password.text {
-            dismiss()
-            return
-        }
-        model = model.resetPassword().replaceError("Неправильный пароль")
     }
 
-    func resetError() {
-        model = model.replaceError(nil)
+    private func
+    processNewPassword(_ password: String, _ confirmPassword: String, _ isConfirmationPhase: Bool) {
+        let manager = AuthenticationService.shared
+        if !isConfirmationPhase {
+            model = model.replaceConfirmationPhase(true)
+            return
+        }
+        if password != confirmPassword {
+            Toast.error("Пароли не совпадают").show(haptic: .error)
+            model = model.resetToInitialState()
+            return
+        }
+        manager.setPassword(password)
+        dismiss()
+    }
+
+    private func
+    processAuthentication(_ password: String) {
+        if AuthenticationService.shared.password == password {
+            dismiss()
+            return
+        }
+        Toast.error("Неправильный пароль").show(haptic: .error)
+        model = model.resetToInitialState()
     }
 }

@@ -4,7 +4,6 @@ protocol SettingsTableViewAdapterOutput {
 }
 
 final class SettingsTableViewCell: UITableViewCell {
-
 }
 
 final class SettingsTableViewAdapter: NSObject {

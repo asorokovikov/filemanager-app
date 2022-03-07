@@ -144,7 +144,7 @@ public class IconAppleToastView : UIStackView {
         return .label
     }
 
-    public init(image: UIImage, imageTint: UIColor? = defaultImageTint, title: String, subtitle: String? = nil) {
+    public init(image: UIImage?, imageTint: UIColor? = defaultImageTint, title: String, subtitle: String? = nil) {
         super.init(frame: CGRect.zero)
         axis = .horizontal
         spacing = 15
