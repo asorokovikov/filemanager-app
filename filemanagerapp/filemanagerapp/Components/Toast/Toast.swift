@@ -116,6 +116,11 @@ public class Toast {
         }
     }
 
+    public static func
+    haptic(type: UINotificationFeedbackGenerator.FeedbackType) {
+        UINotificationFeedbackGenerator().notificationOccurred(type)
+    }
+
     /// Close the toast
     /// - Parameters:
     ///   - time: Time after which the toast will be closed

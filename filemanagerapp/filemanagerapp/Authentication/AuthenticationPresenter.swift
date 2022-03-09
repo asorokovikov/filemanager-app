@@ -58,6 +58,7 @@ extension AuthenticationPresenter: AuthenticationViewOutput {
             return
         }
         manager.setPassword(password)
+        Toast.haptic(type: .success)
         dismiss()
     }
 
