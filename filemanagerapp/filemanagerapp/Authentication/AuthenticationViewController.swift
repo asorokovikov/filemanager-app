@@ -149,6 +149,12 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewIn
             make.height.equalTo(50)
         }
     }
+
+#if DEBUG
+    deinit {
+        print("deinit \(self)")
+    }
+#endif
 }
 
 // MARK: - Keyboard Handler

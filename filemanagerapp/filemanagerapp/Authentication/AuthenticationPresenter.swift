@@ -65,6 +65,7 @@ extension AuthenticationPresenter: AuthenticationViewOutput {
     private func
     processAuthentication(_ password: String) {
         if AuthenticationService.shared.password == password {
+            Toast.haptic(type: .success)
             dismiss()
             return
         }

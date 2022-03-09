@@ -48,11 +48,19 @@ final class SettingsViewController: UITableViewController {
 
         let changePasswordRow = ButtonRow(
             title: "Изменить пароль",
-            action: { [weak self] _ in self?.changePassword() })
+            action: { [weak self] _ in self?.changePassword() }
+        )
+
+        let resetPasswordRow = RedButtonTableRow(
+            title: "Сбросить пароль",
+            action: { [weak self] _ in self?.resetPassword() }
+        )
+        let resetPasswordFooter = "Если сбросить пароль, то при следующем входе необходимо создать его заново"
 
         return TableViewModel(sections: [
             TableSection(headerText: "Общее", rows: [sortingAscendingRow], footerText: sortingAscendingFooter),
             TableSection(rows: [changePasswordRow]),
+            TableSection(rows: [resetPasswordRow], footerText: resetPasswordFooter),
         ])
     }
 
@@ -67,5 +75,12 @@ final class SettingsViewController: UITableViewController {
     changePassword() {
         tableView.deselectRowIfSelected()
         coordinator?.showPasswordEditModule()
+    }
+
+    private func
+    resetPassword() {
+        tableView.deselectRowIfSelected()
+        AuthenticationService.shared.setPassword(nil)
+        Toast.success("Пароль сброшен").show(haptic: .success)
     }
 }

@@ -16,12 +16,10 @@ struct ButtonRow: TableRow {
 
 struct RedButtonTableRow: TableRow {
     let title: String
-    let accessibilityIdentifier: String
     let action: TableAction?
 
     func configureCell(_ cell: UITableViewCell) -> UITableViewCell {
         cell.textLabel?.text = title
-        cell.accessibilityIdentifier = accessibilityIdentifier
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = .byWordWrapping
 
