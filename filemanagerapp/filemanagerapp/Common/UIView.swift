@@ -62,19 +62,6 @@ public extension UIView {
         return textField
     }
 
-    func makeErrorLabel(text: String? = nil) -> UILabel {
-        let label = UILabel()
-        label.text = text
-        label.backgroundColor = App.Color.failure.withAlphaComponent(0.1)
-        label.setBorder(width: 0.5, color: App.Color.failure)
-        label.setCorner(radius: 8)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.textColor = App.Color.failure
-        label.isHidden = true
-        return label
-    }
-
     func makeLabel(text: String, font: UIFont) -> UILabel {
         let label = UILabel()
         label.text = text
@@ -92,6 +79,14 @@ public extension UIView {
         let font = UIFont.preferredFont(forTextStyle: .title3)
         let label =  makeLabel(text: text, font: font)
         label.textColor = App.Color.secondaryText
+        return label
+    }
+
+    func makeErrorLabel(text: String? = nil) -> UILabel {
+        let label = makeLabel(text: text ?? .empty, font: .preferredFont(forTextStyle: .subheadline))
+        label.textColor = App.Color.failure
+        label.textAlignment = .left
+        label.numberOfLines = 1
         return label
     }
 

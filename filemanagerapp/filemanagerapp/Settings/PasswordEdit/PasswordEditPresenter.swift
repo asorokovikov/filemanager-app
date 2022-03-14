@@ -34,11 +34,11 @@ final class PasswordEditPresenter: PasswordEditViewOutput {
 
     func render() {
         model = PasswordEditViewData(
-            password: TextViewData(text: .empty, onChange: { [weak self] value in
+            password: TextViewData.make({ [weak self] value in
                 guard let self = self else { return }
                 self.model = self.model.replacePassword(value)
             }),
-            confirm: TextViewData(text: .empty, onChange: { [weak self] value in
+            confirm: TextViewData.make({ [weak self] value in
                 guard let self = self else { return }
                 self.model = self.model.replaceConfirmPassword(value)
             }),

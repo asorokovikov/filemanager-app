@@ -11,13 +11,13 @@ final class AuthenticationPresenter {
     func render() {
         if AuthenticationService.shared.isPasswordCreated {
             model = AuthenticationViewData.authentication(
-                password: TextViewData(text: .empty, onChange: onTextChanged),
+                password: TextViewData.make(onTextChanged),
                 canSavePassword: AuthenticationService.IsValidPassword
             )
         } else {
             model = AuthenticationViewData.newPassword(
-                password: TextViewData(text: .empty, onChange: onTextChanged),
-                confirmPassword: TextViewData(text: .empty, onChange: onTextChanged),
+                password: TextViewData.make(onTextChanged),
+                confirmPassword: TextViewData.make(onTextChanged),
                 isConfirmationPhase: false,
                 canSavePassword: AuthenticationService.IsValidPassword
             )
@@ -26,7 +26,13 @@ final class AuthenticationPresenter {
 
     private func
     onTextChanged(_ newValue: String) {
-        model = model.replacePassword(newValue)
+        var newModel = model
+        if newValue.isEmpty || newValue.count >= 4 {
+            newModel = newModel.replaceError(.empty)
+        } else {
+            newModel = newModel.replaceError("Пароль должен быть не короче 4 символов")
+        }
+        model = newModel.replacePassword(newValue)
     }
 
     private func

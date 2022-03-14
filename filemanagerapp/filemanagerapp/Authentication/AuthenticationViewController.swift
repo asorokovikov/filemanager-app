@@ -43,14 +43,16 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewIn
         return imageView
     }()
 
-    private lazy var button = view.makeButton(
-        target: self,
-        selector: #selector(didTapButton)
-    )
+    private lazy var errorLabel = view.makeErrorLabel()
 
     private lazy var textField = view.makePasswordField(
         target: self,
         onTextChange: #selector(didChangeText)
+    )
+
+    private lazy var button = view.makeButton(
+        target: self,
+        selector: #selector(didTapButton)
     )
 
     // MARK: - Lifecycle
@@ -73,15 +75,18 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewIn
                 button.title = "Повторите пароль"
                 button.isEnabled = canSavePassword(confirmPassword.text)
                 textField.text = confirmPassword.text
+                errorLabel.text = confirmPassword.error
             } else {
                 button.title = "Создать пароль"
                 button.isEnabled = canSavePassword(password.text)
                 textField.text = password.text
+                errorLabel.text = password.error
             }
         case .authentication(let password, let canSavePassword):
             button.title = "Введите пароль"
             button.isEnabled = canSavePassword(password.text)
             textField.text = password.text
+            errorLabel.text = password.error
         }
     }
 
@@ -128,7 +133,7 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewIn
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(stackView)
-        stackView.addArrangedSubviews(imageView, textField, button)
+        stackView.addArrangedSubviews(imageView, errorLabel, textField, button)
 
         scrollView.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
         contentView.snp.makeConstraints { make in
@@ -144,6 +149,9 @@ final class AuthenticationViewController: UIViewController, AuthenticationViewIn
         }
         textField.snp.makeConstraints { make in
             make.height.equalTo(50)
+        }
+        errorLabel.snp.makeConstraints { make in
+            make.height.equalTo(16)
         }
         button.snp.makeConstraints { make in
             make.height.equalTo(50)
